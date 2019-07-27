@@ -7,7 +7,7 @@ namespace PipelinePatternPractice.Infrastructure
 {
     public static class GenericPipelineExtensions
     {
-        public static TOutput Step2<TInput, TOutput, TInputOuter, TOutputOuter>(this TInput inputType,
+        public static TOutput NextStep<TInput, TOutput, TInputOuter, TOutputOuter>(this TInput inputType,
             GenericPipeline<TInputOuter, TOutputOuter> pipelineBuilder,
             Func<TInput, TOutput> step)
         {
