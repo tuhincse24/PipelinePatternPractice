@@ -14,11 +14,11 @@ namespace PipelinePatternPractice
 
             var tsk = Task.Run(async () =>
             {
-                Console.WriteLine(await pipeline.Execute("The pipeline pattern is the best pattern"));
-                Console.WriteLine(await pipeline.Execute("The pipeline pattern is the best pattern"));
-                Console.WriteLine(await pipeline.Execute("The pipeline pattern is the best pattern"));
-                Console.WriteLine(await pipeline.Execute("The pipeline patter is the best patter"));
-                Console.WriteLine(await pipeline.Execute("The pipeline pattern is the best pattern"));
+                Console.WriteLine(await pipeline.Execute("The pipeline pattern1 is the best pattern1"));
+                Console.WriteLine(await pipeline.Execute("The pipeline pattern2 is the best pattern2"));
+                Console.WriteLine(await pipeline.Execute("The pipeline pattern3 is the best pattern3"));
+                Console.WriteLine(await pipeline.Execute("The pipeline patter4 is the best patter4"));
+                Console.WriteLine(await pipeline.Execute("The pipeline pattern5 is The best pattern5 pattern5 The"));
             });
             tsk.Wait();
 
@@ -37,11 +37,18 @@ namespace PipelinePatternPractice
 
         private static string FindMostCommon(string input)
         {
-            return input.Split(' ')
+
+            var mostFrequentWord1 = input.Split(' ')
+                .GroupBy(word => word)
+                .OrderBy(group => group.Count()).ToList();
+
+            var mostFrequentWord = input.Split(' ')
                 .GroupBy(word => word)
                 .OrderBy(group => group.Count())
                 .Last()
                 .Key;
+            Console.WriteLine(mostFrequentWord);
+            return mostFrequentWord;
         }
 
         private static int CountChars(string mostCommon)
